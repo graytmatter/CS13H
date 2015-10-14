@@ -204,3 +204,10 @@ with 128 and gates I can store two 32 bit ints which I can add together with a r
 two nand gates is static ram
 Dram is capacitors, Dram is denser but slower.
 
+
+
+
+
+
+
+

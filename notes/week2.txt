@@ -1,0 +1,284 @@
+char ≤ 	Short ≤ int ≤ long ≤ long long
+8 bits	16	32	64	64(128)
+
+Static -> this goes somewhere else in memory. Static variables have a scope of the file.
+auto -> everything is auto by default and they go on the stack (standard environment diagram stuff)
+register -> don’t bother, it’s supposed to speed stuff up but it won’t anymore.
+unsigned -> positive number
+  extern??
+
+Stack is also called a last in first out list: lifo
+
+int main() {
+  int x,y,z;
+  static int foo;
+}
+
+
+Memory:
+Stack (grows down) (auto lives here)
+———————
+Nowhere
+———————
+Heap (grows by expanding the data segment)
+———————
+data (static variables like foo go here) 
+——————
+Code   > neither of these are writable
+——————
+Kernel (OS)      ^
+
+
+A character is just an integer, an unsigned int
+A = 65 a= 97
+bits is bits is bits JOHN + 17 is gonna be an int.
+J=74,O=79,H=72,N=78
+4H,4F,48,4E
+0100 1010  1000 1111  0100 1000  1000 1110
+char 	   short                 int
+little endian and big endian, which order, lil endian is right-ways and apparently more popular.
+
+
+signed
+8 bits normal
+(1000 0000) -128 to 127 (0111 1111)
+unsigned
+0 to 255
+(0000 0000) to (1111 1111)
+
+
+
+
+
+float ≠ the reals, or even the rationals
+
+
+float |sign|exponent| mantissa|  sign*mantissa*2^exp 1/m *2^p gives you m things. this is not all floats. these are 32 bits. a double precision floats is 64 bit.
+They are a relatively sparse sub set of the rationals.
+When you do math with them they line up the exponents which can turn small numbers all to zero. Normally we don’t care too much about stuff like this unless matrices get involved. Or we need to be super precise. 
+
+char*s = “hello” = 68 65 6c 6c 6F 00 strings are terminated by a byte of zeros.
+char s[] = “hello”
+These two things are the same.
+
+
+s=100
+*s     = h = s[0]
+*(s+1) = e = s[1]
+*(s+1) = l = s[2]
+*(s+1) = l = s[3]
+*(s+1) = o = s[4]
+
+a pointer is a number that number is the address of a byte
+
+There are 12 bytes of computer memory
+100  h
+101  e
+102  l
+103  l
+104  o
+105
+106
+107
+108
+109
+110
+111
+112
+
+
+
+char s[] = “hello” (s=100)
+s+1 = 101
+s+2 =102
+s+92 = 192 if you run off the end of your array I’m sorry arithmetic happens.
+
+
+int b[] = {1,2,3,4} (b=200)
+b+1 = 204
+b+2 208
+b+3 = 212
+b+92 = 568
+
+
+to the first order of degree pointers and arrays are the same. Don’t do pointer arithmetic when it doesn’t make sense. You want to write clear simple code.
+
+
+I/O
+Unix system calls
+Studio
+
+# include <studio.h> this is not c this is cpp
+cpp has stuff like 
+#include
+#define
+#ifdef
+#ifndet
+
+
+interpreted vs compiled
+interpreted code has python go through instructions and do each step
+Compiled code 
+
+
+marco pre proccesor
+This manipulates text takes your c program and turns it into a different c file. the c compiler never sees #include, it sees all the c code in the included file.
+
+
+#define STAKE 1000
+c will never see STAKE cpp will go through and replace STAKE with 1000.
+
+
+		  a b a b
+#define MAX(X,Y) (X>Y?X:Y)
+Z = max(a++,b++)
+which ever is bigger will be incremented twice
+
+
+
+%d int
+%s strings
+%c char
+%f float
+
+
+
+This comes from FORTRAN
+printf(“%d\n”,4+5);
+9
+
+
+one = rollDie();
+two= rollDie();
+printf(“You rolled (%d,%d)\n”,one,two);
+scanf(“%d”,&x);       &x is x’s address
+
+
+
+
+DAY 2 Logical operators
+&&	logic and
+& 	bitwise and
+||	logic or
+| 	bitwise or
+==	check equivalence
+= 	assignment
+! 	not
+~	bitwise not
+
+
+int countOnes(unsigned int n)
+{int i, count = 0;
+	for (i = 0; i < 8*sizeof(unsigned int); i+=1){
+		#don’t do this
+		if((c>>i)&01)
+			c+=1;
+		#don’t use ternary operators
+		c+= (n>>i)&01 ? 1:0
+		#don’t do this either, also don’t be a smart ass.
+		c+= (n>>i) & 01	
+	}
+}
+	
+
+Go check out page 49 in the c book there is a table of the precedent of logic operators.
+() highest precedence left associative
+! ~ ++ — - (type) * right associative
+* / % Left associative
+logics
+assignment
+Just read the table tonight
+
+
+In c we have curly braces {}
+We use it to group statements
+Inside curly braces is a new scope.
+
+
+do{
+}while (boolean);
+
+You can go through a normal while loop 0 or more times.
+a do loop, loops 1 or more times.
+
+
+
+
+White space!
+if (stuff){
+
+}
+don’t use break often: lil sin
+continue: big sin
+
+switch(exp){
+case v1:
+case v2:
+	do stuff stuff;
+	break;
+case vk:
+	do stuff stuff;
+	break;
+}
+
+If you don’t break you will keep going down until you get to the end of the braces, or you hit a break.
+Switch statements are hazardous.
+
+What is memory: memory is an array of bytes from 0 to (2^n)-1
+
+int a[100]
+a goes from 1000 to 1400
+a[0] = 1000
+a[1] = 1004
+double b[100]
+b goes from 1400 to 2200
+float x lives at 2200
+&x = 2200
+int k; &k = 2204
+
+l-val
+r-val
+
+left and right of the equals sign
+r-val gets the contents of the variable
+l-val you get the location so you can put stuff there.
+
+int x = 4
+int *p;
+
+p = &x;
+*p = *p+1;
+
+printf(“%d\n”,x);
+will print 5 because p is pointing to the same place as x
+
+
+
+
+int a=1,b=2,c=3
+int *p,
+p=&b
+*p=2
+
+we put 1,2,3 on the stack p is pointing at 2
+*(p+1) will equal 1 or 3
+*(p-1) will equal the other one
+
+
+sbrk() system call is how you ask unix for memory
+you shouldn’t need this cause we have  mallac()
+void * mallac(int size) gets you a pointer to a bunch of contiguous memory 
+also:
+void * calloc(int count, int size) gets you a pointer to ho
+
+
+
+in C we have a thing called free(void *)
+everything you mallac you must free. Or else MEMORY LEAKS WILL HAPPEN AND YOU’RE THING WILL BLOAT AND THEN YOUR COMPUTER WILL CRASH!!!
+
+
+
+
+Read piazzo goto article. Goto is only used for OH CRAP! scenarios. 
+Look up grumble prize Surprise! Surprise! Surprise!
+Dr. Demento
