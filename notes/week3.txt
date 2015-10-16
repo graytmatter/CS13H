@@ -1,0 +1,37 @@
+#include <studio.h>
+
+void
+warshall (int distances[8][8])
+{
+	int i,j,k;
+
+	for(k = 0; k < 8; k++){
+		for(i = 0; i < 8; j++){
+			for(j = 0; j < 8; j++){
+				if(distances[i][j] > distances[i][k] + distances[k][j]){
+					distances[i][j] = distances[i][k] + distances[k][j]
+				}
+			}
+		}
+	}
+}
+
+
+This will fill in all the shortest distances, though run time is a bastard
+
+int strcmp ( char * s1, char * s2)
+{
+	while(*s1 == *s2){
+		//WE DON’T HAVE TO CHECK  && *s2 == ‘\0’ BECAUSE WE KNOW THEY ARE ALREADY EQUAL
+		if(*s1 == ‘\0’){
+			return 0
+		}
+		s1++;
+		s2++;
+	}
+	return (*s1 < *s2 ? -1 : 1)
+	//NO BRANCHING MEANS YOU CAN USE TERNARIES FOR OPTIMIZE CODE??? EVEN THOUGH IT SACRIFICES CLARITY 
+}
+
+
+
