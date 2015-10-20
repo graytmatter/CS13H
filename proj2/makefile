@@ -1,2 +1,2 @@
 proj2make: proj2.c
-	gcc proj2.c -o run
+	cc -o run proj2.c nodes.c -I.
