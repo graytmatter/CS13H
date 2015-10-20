@@ -1,6 +1,6 @@
 #include <stdio.h>
 #define BUF_SIZE 20
-#include <nodes.c>
+// #include <nodes.c>
 int main(int argc, char const *argv[])
 {
 
