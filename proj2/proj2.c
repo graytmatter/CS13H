@@ -55,39 +55,40 @@ int insertBasic(NODE *list, char *word) {
   return cmpCount;
 }
 
-// int insertMTFR(NODE *list, char *word) {
-//   int cmpCount = 0;
-//   NODE* foundnode = list;
-//   while(foundnode != NULL && strcmp(foundnode->word,word)!=0){
-//     cmpCount ++;
-//     foundnode = foundnode->next;
-//   }
-//   if(foundnode != NULL){
-//     NODE* newList = foundnode;
-//     if(newList->prev){
-//       newList->prev->next = newList->next;
-//     }
-//     if(newList->next){
-//       newList->next->prev = newList->prev;
-//     }
-//     newList->count ++;
-//     newList->next = list;
-//     list->prev = newList;
-//     list = newList;
-//     printf("%s\n","moved to front" );
-//   }else{
-//     NODE* newList = makeNode(word);
-//     newList->next = list;
-//     list->prev = newList;
-//     list = newList;
-//   }
-//   return cmpCount;
-// }
+int insertMTFR(NODE *list, char *word) {
+  int cmpCount = 0;
+  NODE* foundnode = list;
+  while(foundnode != NULL && strcmp(foundnode->word,word)!=0){
+    cmpCount ++;
+    foundnode = foundnode->next;
+  }
+  if(foundnode != NULL){
+    NODE* newList = foundnode;
+    if(newList->next){
+      newList->next->prev = newList->prev;
+    }
+    if(newList->prev){
+      newList->prev->next = newList->next;
+      newList->next = list;
+      list->prev = newList;
+      list = newList;
+      printf("%s\n","moved to front" );
+    }
+    newList->count ++;
+  }else{
+    NODE* newList = makeNode(word);
+    newList->next = list;
+    list->prev = newList;
+    list = newList;
+  }
+  return cmpCount;
+}
 
 
 
 int main(int argc, char const *argv[])
 {
+  printf( "Lower case of A is %c\n", tolower('A'));
   static char buffer[BUF_SIZE];
   if(getWord(buffer) != NULL){
     NODE* basicList = makeNode(buffer);
@@ -95,20 +96,20 @@ int main(int argc, char const *argv[])
     NODE* MTFRList = makeNode(buffer);
     int MTFRCmpCount = 0;
     while(getWord(buffer) != NULL){
-      basicCmpCount = insertBasic(basicList,buffer);
-      if(basicList->prev != NULL){
-        basicList = basicList->prev;
-      }
-      // MTFRCmpCount = insertMTFR(MTFRList,buffer);
-      // if(MTFRList->prev != NULL){
-      //   MTFRList = MTFRList->prev;
+      // basicCmpCount = insertBasic(basicList,buffer);
+      // if(basicList->prev != NULL){
+      //   basicList = basicList->prev;
       // }
+      MTFRCmpCount = insertMTFR(MTFRList,buffer);
+      if(MTFRList->prev != NULL){
+        MTFRList = MTFRList->prev;
+      }
       // basicList = basic->list;
       // basicList = makeNode(buffer);
-      printf("%s\n", "basicList");
-      printList(basicList);
-      // printf("%s\n", "MTFRList");
-      // printList(MTFRList);
+      // printf("%s\n", "basicList");
+      // printList(basicList);
+      printf("%s\n", "MTFRList");
+      printList(MTFRList);
     }
   printList(basicList);
 
