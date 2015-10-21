@@ -12,7 +12,7 @@ struct node{
 
 NODE makenode(char*str){
   NODE result;
-  strcpy(result.word,"str");
+  strcpy(result.word,str);
   result.count = 1;
   return result;
 }
