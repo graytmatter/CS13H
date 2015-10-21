@@ -80,7 +80,7 @@ int insertMTFR(NODE *list, char *word) {
       newList->next = list; //put rest after our new first
       list->prev = newList; //put first before new rest
       newList->prev = NULL;
-      printf("%s\n","moved to front" );
+      // printf("%s\n","moved to front" );
     }
     newList->count ++;
   }else{
