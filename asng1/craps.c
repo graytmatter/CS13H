@@ -56,7 +56,7 @@ int main(int argc, char const *argv[])
           printf("%s\n","Roll again!!");
         }
       }
-    }else{
+    }else if(bet != 0){
       printf("%s\n", "You can't bet that much!" );
     }
     if(bank == 0){
