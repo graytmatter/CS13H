@@ -10,7 +10,7 @@ int *makeRandomList(int length){
   int *list = malloc(length*sizeof(int));
   for (int i = 0; i < length; ++i)
   {
-    list[i] = arc4random();
+    list[i] = arc4random() %1000;
   }
   return list;
 }
@@ -307,67 +307,120 @@ void printHeap(int a[],int length){
       level*=2;
     }
   }
-  // printf("\n\n");
+  printf("\n\n");
+}
+void reverselist(int a[], int length){
+  for (int i = 0; i < length/2; ++i)
+  {
+    SWAP(&a[i],&a[length-(i+1)]);
+    moves[4]+=3;
+  }
 }
 
+
+
+
 void makeHeap(int a[],int length){
-  int change;
-  do{
-    change = 0;
-    for (int i = 1; i*2 < length+1; ++i)
-    {
-      int elem = a[i-1];
-      int left = a[i*2-1];
-      int right= a[i*2];
-      // printf("i: %i\n", i);
-      // printf("elem:%i, left:%i, right:%i \n\n",elem,left,right);
-      // printHeap(a,length);
-      compares[4] +=3;
-      if(elem > left || (elem > right && i*2 != length)){
-        if(right <left && i*2 != length){
-          // printf("right is lowest\n");
-          SWAP(&a[i-1],&a[i*2]);
-          moves[4]+=3;
-          change = 1;
-        }else{
-          // printf("left is lowest\n");
-          SWAP(&a[i-1],&a[i*2-1]);
-          moves[4]+=3;
-          change = 1;
-        }
-      }
-      // printf("\n\n");
+  for (int i = 1; i < length; ++i)
+  {
+    int parent = a[(i-1)/2];
+    int elem = a[i];
+    int j = i;
+    while(elem > parent && j != 0){
+      SWAP(&a[(j-1)/2], &a[j]);
+      j = (j-1)/2;
+      parent = a[(j-1)/2];
+      elem = a[j];
     }
-  }while(change != 0);
+  }
   // printHeap(a,length);
+
+  // int change;
+  // do{
+  //   change = 0;
+  //   for (int i = 1; i*2 < length+1; ++i)
+  //   {
+  //     int elem = a[i-1];
+  //     int left = a[i*2-1];
+  //     int right= a[i*2];
+  //     compares[4] +=3;
+  //     if(elem > left || (elem > right && i*2 != length)){
+  //       if(right < left && i*2 != length){
+  //         SWAP(&a[i-1],&a[i*2]);
+  //         moves[4]+=3;
+  //         change = 1;
+  //       }else{
+  //         SWAP(&a[i-1],&a[i*2-1]);
+  //         moves[4]+=3;
+  //         change = 1;
+  //       }
+  //     }
+  //   }
+  // }while(change != 0);
 }
 
 void fixheap(int heap[],int length){
-  for(int i = 1; i*2 < length+1; ++i)
-  {
-    int elem = heap[i-1];
-    int left = heap[i*2-1];
-    int right= heap[i*2];
-    compares[4] +=3;
-    if(elem > left || (elem > right && i*2 != length)){
-      if(right <left && i*2 != length){
-        SWAP(&heap[i-1],&heap[i*2]);
-        moves[4]+=3;
-      }else{
-        SWAP(&heap[i-1],&heap[i*2-1]);
-        moves[4]+=3;
-      }
+  int i = 1;
+  int elem,left,right;
+  elem = heap[i-1];
+  left = heap[i*2-1];
+  right= heap[i*2];
+  printf("elem:%i, left:%i, right:%i \n\n",elem,left,right);
+  while(elem < left || (elem < right && i*2 != length)){
+    printf("i: %i\n", i);
+    printHeap(heap,length);
+    if(left > right){
+      printf("swap with left\n");
+      SWAP(&heap[i-1], &heap[i*2-1]);
+      i = i*2-1;
+    }else if(left < right && i*2 != length){
+      printf("swap with left\n");
+      SWAP(&heap[i-1], &heap[i*2]);
+      i = i*2;
     }
-  }
+    // printf("i:%i\n", i);
+    elem = heap[i-1];
+    left = heap[i*2-1];
+    right= heap[i*2];
+    printf("elem:%i, left:%i, right:%i \n\n",elem,left,right);
+  };
+
+
+  //   for(int i = 1; i*2 < length+1; ++i)
+  // {
+  //   int elem = heap[i-1];
+  //   int left = heap[i*2-1];
+  //   int right= heap[i*2];
+  //   // printf("i: %i\n", i);
+  //   // printf("elem:%i, left:%i, right:%i \n\n",elem,left,right);
+  //   // printHeap(heap,length);
+  //   compares[4] +=3;
+  //   if(elem > left || (elem > right && i*2 != length)){
+  //     if(right <left && i*2 != length){
+  //       // printf("right is lowest\n");
+  //       SWAP(&heap[i-1],&heap[i*2]);
+  //       moves[4]+=3;
+  //     }else{
+  //       // printf("left is lowest\n");
+  //       SWAP(&heap[i-1],&heap[i*2-1]);
+  //       moves[4]+=3;
+  //     }
+  //   }
+  // }
 }
 
 void heapSort(int heap[],int length){
   for (int i = length-1; i>0; --i)
   {
-    printf("%i\n", i);
+    // printHeap(heap,length);
+    // printf("i: %i,value: %i\n",i,heap[i]);
     SWAP(&heap[0],&heap[i]);
-    fixheap(heap,length-1);
+    // printf("SWAP\n");
+    // printHeap(heap,length);
+    fixheap(heap,i);
+    // printf("FIX\n");
   }
+  reverselist(heap,length);
 }
 
 //void (*functions[5]) = {minSort,bubbleSort,insertionSort};
@@ -382,52 +435,54 @@ int main(int argc, char const *argv[])
   int sortingList[i];
   int* sortedList = makeSortedList(i);
   int a[5] = {1,3,4,6,9};
-  //minSort
-  copylist(inputList,sortingList,i);
-    minSort(sortingList,i);
-      checkSortedLow(sortingList,i);
-      printf("Minsort did %i comparisons and %i moves\n", compares[0], moves[0]);
-    moves[0] = 0; compares[0]=0;
-    minSort(sortedList,i);
-      checkSortedLow(sortedList,i);
-      printf("For a sorted list Minsort did %i comparisons and %i moves\n", compares[0], moves[0]);
+  // //minSort
+  // copylist(inputList,sortingList,i);
+  //   minSort(sortingList,i);
+  //     checkSortedLow(sortingList,i);
+  //     printf("Minsort did %i comparisons and %i moves\n", compares[0], moves[0]);
+  //   moves[0] = 0; compares[0]=0;
+  //   minSort(sortedList,i);
+  //     checkSortedLow(sortedList,i);
+  //     printf("For a sorted list Minsort did %i comparisons and %i moves\n", compares[0], moves[0]);
 
-  //bubbleSort
-  copylist(inputList,sortingList,i);
-    bubbleSort(sortingList,i);
-      checkSortedLow(sortingList,i);
-      printf("Bubblesort did %i comparisons and %i moves\n", compares[1], moves[1]);
-    moves[1]=0; compares[1]=0;
-    bubbleSort(sortedList,i);
-      checkSortedLow(sortedList,i);
-      printf("For a sorted list Bubblesort did %i comparisons and %i moves\n", compares[1], moves[1]);
+  // //bubbleSort
+  // copylist(inputList,sortingList,i);
+  //   bubbleSort(sortingList,i);
+  //     checkSortedLow(sortingList,i);
+  //     printf("Bubblesort did %i comparisons and %i moves\n", compares[1], moves[1]);
+  //   moves[1]=0; compares[1]=0;
+  //   bubbleSort(sortedList,i);
+  //     checkSortedLow(sortedList,i);
+  //     printf("For a sorted list Bubblesort did %i comparisons and %i moves\n", compares[1], moves[1]);
 
-  //insertionSort
-  copylist(inputList,sortingList,i);
-    insertionSort(sortingList,i);
-      checkSortedLow(sortingList,i);
-      printf("Insertionsort did %i comparisons and %i moves\n", compares[2], moves[2]);
-    moves[2] = 0; compares[2]=0;
-    insertionSort(sortedList,i);
-      checkSortedLow(sortedList,i);
-      printf("For a sorted list Insertionsort did %i comparisons and %i moves\n", compares[2], moves[2]);
+  // //insertionSort
+  // copylist(inputList,sortingList,i);
+  //   insertionSort(sortingList,i);
+  //     checkSortedLow(sortingList,i);
+  //     printf("Insertionsort did %i comparisons and %i moves\n", compares[2], moves[2]);
+  //   moves[2] = 0; compares[2]=0;
+  //   insertionSort(sortedList,i);
+  //     checkSortedLow(sortedList,i);
+  //     printf("For a sorted list Insertionsort did %i comparisons and %i moves\n", compares[2], moves[2]);
 
-  //shellSort
-  copylist(inputList,sortingList,i);
-    shellSort(sortingList,i);
-      checkSortedLow(sortingList,i);
-      printf("Shellsort did %i comparisons and %i moves\n", compares[3], moves[3]);
-    moves[3] = 0; compares[3]=0;
-    shellSort(sortedList,i);
-      checkSortedLow(sortedList,i);
-      printf("For a sorted list Shellsort did %i comparisons and %i moves\n", compares[3], moves[3]);
+  // //shellSort
+  // copylist(inputList,sortingList,i);
+  //   shellSort(sortingList,i);
+  //     checkSortedLow(sortingList,i);
+  //     printf("Shellsort did %i comparisons and %i moves\n", compares[3], moves[3]);
+  //   moves[3] = 0; compares[3]=0;
+  //   shellSort(sortedList,i);
+  //     checkSortedLow(sortedList,i);
+  //     printf("For a sorted list Shellsort did %i comparisons and %i moves\n", compares[3], moves[3]);
 
   //heapSort
   copylist(inputList,sortingList,i);
     makeHeap(sortingList,i);
+    printHeap(sortingList,i);
     heapSort(sortingList,i);
-    checkSortedLow(sortingList,i);
-    // printlist(sortingList,i);
+      checkSortedLow(sortingList,i);
+      printf("Heapsort did %i comparisons and %i moves\n", compares[4], moves[4]);
+    printlist(sortingList,i);
       // printf("Heapsort did %i comparisons and %i moves\n", compares[3], moves[3]);
     // quickSort(makeRandomLList(sortingList,i),i);
       // printLList(makeRandomList(sortingList,i));
