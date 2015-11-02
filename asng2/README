@@ -1,4 +1,4 @@
-This program takes in an arbitrary number of individual words using fgets, formats it into two linked lists, and and when duplicates are added instead of adding them to the linked list it incremenets a counter associated with that word. It does other stuff too.
+This program takes in an arbitrary number of individual words using fgets, formats it into two linked lists, and and when duplicates are added instead of adding them to the linked list it incremenets a counter associated with that word. It does other stuff too. I wrote this program for asignment 2 for CS13 at UC Santa Cruz during fall 2015 quarter
 
 Copyright (c) 2015 Matthew Gray
 

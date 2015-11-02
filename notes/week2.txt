@@ -22,7 +22,7 @@ Nowhere
 ———————
 Heap (grows by expanding the data segment)
 ———————
-data (static variables like foo go here) 
+data (static variables like foo go here)
 ——————
 Code   > neither of these are writable
 ——————
@@ -55,7 +55,7 @@ float ≠ the reals, or even the rationals
 
 float |sign|exponent| mantissa|  sign*mantissa*2^exp 1/m *2^p gives you m things. this is not all floats. these are 32 bits. a double precision floats is 64 bit.
 They are a relatively sparse sub set of the rationals.
-When you do math with them they line up the exponents which can turn small numbers all to zero. Normally we don’t care too much about stuff like this unless matrices get involved. Or we need to be super precise. 
+When you do math with them they line up the exponents which can turn small numbers all to zero. Normally we don’t care too much about stuff like this unless matrices get involved. Or we need to be super precise.
 
 char*s = “hello” = 68 65 6c 6c 6F 00 strings are terminated by a byte of zeros.
 char s[] = “hello”
@@ -109,7 +109,7 @@ Unix system calls
 Studio
 
 # include <studio.h> this is not c this is cpp
-cpp has stuff like 
+cpp has stuff like
 #include
 #define
 #ifdef
@@ -118,7 +118,7 @@ cpp has stuff like
 
 interpreted vs compiled
 interpreted code has python go through instructions and do each step
-Compiled code 
+Compiled code
 
 
 marco pre proccesor
@@ -176,10 +176,10 @@ int countOnes(unsigned int n)
 		#don’t use ternary operators
 		c+= (n>>i)&01 ? 1:0
 		#don’t do this either, also don’t be a smart ass.
-		c+= (n>>i) & 01	
+		c+= (n>>i) & 01
 	}
 }
-	
+
 
 Go check out page 49 in the c book there is a table of the precedent of logic operators.
 () highest precedence left associative
@@ -267,7 +267,7 @@ we put 1,2,3 on the stack p is pointing at 2
 
 sbrk() system call is how you ask unix for memory
 you shouldn’t need this cause we have  mallac()
-void * mallac(int size) gets you a pointer to a bunch of contiguous memory 
+void * mallac(int size) gets you a pointer to a bunch of contiguous memory
 also:
 void * calloc(int count, int size) gets you a pointer to ho
 
@@ -279,6 +279,6 @@ everything you mallac you must free. Or else MEMORY LEAKS WILL HAPPEN AND YOU’
 
 
 
-Read piazzo goto article. Goto is only used for OH CRAP! scenarios. 
+Read piazzo goto article. Goto is only used for OH CRAP! scenarios.
 Look up grumble prize Surprise! Surprise! Surprise!
 Dr. Demento

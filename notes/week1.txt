@@ -9,7 +9,7 @@ Your job is to learn to think clearly and think algorithmically
 You will write a lot of programs in C. Weekly or biweekly you will have a program due.
 You will use an actual editor, emacs or vi, or sublime text
 You’ll use UNIX (FreeBSD) Load a virtual machine.
-You’ll use tools like git, make, cc, lldb… 
+You’ll use tools like git, make, cc, lldb…
 
 20% notes
 30% exams: 15% midterm 15% final
@@ -20,7 +20,7 @@ Don’t fucking cheat.
 
 
 
-Fire up 
+Fire up
 
 git2.soe.ucsc.edu
 
@@ -35,9 +35,9 @@ Peripherals
 CPU
 	ALU Arithmetic logic unit it does arithmetic does logic and or not, is this equal to 0
 	Control unit:
-	Fetch Decode: Grab the next line of code and feeds it to where it needs to go 
+	Fetch Decode: Grab the next line of code and feeds it to where it needs to go
 |||
-BUS, there are actually minibuses in modern computers. 
+BUS, there are actually minibuses in modern computers.
 |||
 DRAM Memory This is where the CPU fetches it’s programs and puts it’s results back
 
@@ -45,7 +45,7 @@ also connected to the BUS is the controller which is in turn connected to the ke
 Video is also connected to the BUS
 
 5 buses
-A bunch of controllers for most inputs. 
+A bunch of controllers for most inputs.
 
 
 
@@ -104,7 +104,7 @@ Call this weeks notes week 1
 T 1 (+5v)
 F 0 (-5v)
 
-not¬| 
+not¬|
    0|1
    1|0
 
@@ -124,12 +124,12 @@ PQR
 Pand(QorR)= (PorQ)and(PorR)
 PandQ = QandP
 and distributes over or
-or distributes over and 
+or distributes over and
 
 not (PorQ) = notP or notQ
-not (PandQ) = notP and notQ  
+not (PandQ) = notP and notQ
 
-in C 
+in C
 xor ^
 not !
 and &&
@@ -151,7 +151,7 @@ This tells us the intersection of sets
   11011111
 Union
 
-~ 01010111= 10101000	
+~ 01010111= 10101000
 Set compliment
 
 
@@ -196,7 +196,7 @@ Make an exclusive or gate in your free time.
 
 
 
-Combinatorial logic, logic gates, boolean 
+Combinatorial logic, logic gates, boolean
 
 With two nand gates I can store a bit
 With 64 nand gates I can store a 32 bit ints
