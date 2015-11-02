@@ -2,4 +2,16 @@ This Program compares the runtime of several common sorting algorithms.
 
 
 
+MinSort: Min Sort sorts a list by repeatedly taking the smallest elem in the rest of the list and moving it to the end of the sorted portion of the list. This algorithm has a O(n^2) run time which is consistent with my results. And the adversary is the sorted list following the maximum value in index 0.
 
+BubbleSort: Bubble Sort sorts a list by repeatedly running though the list comparing each elem with the elem following them. if those two are out of order switch them. This algorithm has an O(n^2) runtime which is consistent with my results. The adversary is a reverse sorted list.
+
+InsertionSort: Insertion Sort sorts a list by repeadly taking the first elem in the ramining unsorted list and inserting it into the correct position in the sorted portion of the list. This algorithm should have an O(n^2) runtime which is not consistent with my results, I think I'm getting like O(n) or O(nlogn) time, I'm probably missing something... The adversary is a reverse sorted list.
+
+ShellSort: Shell Sort sorts a list by running insertion sort over the list at intervals usually derived by repeatedly deviding the list length by 2. This algorithm has a nlogn run time which is consistent with my results. The adversary is two sorted lists interspersed. Which will have a O(n^2) runtime.
+
+QuickSort: Quick Sort is quick sort. Quick sort sorts recursively choosing a pivot and then splitting the list in sub lists of all elems greater than the pivot and all elems less than the pivot. It has a aysmptotic runtime of O(nlogn) which is consistent with my results. The adversary is a sorted or reverse sorted list which gives it a O(n^2) runtime.
+
+HeapSort: Heap Sort sorts a list by first turning it into a heap and then repeatedly swaping the first elem off the top of that heap and to the end begining of the sorted array, and then fixing the heap with the new head. The algorithm has a O(nlogn) runtime which is consistent with my results. Heapsort has no adversary.
+
+MergeSort: Merge Sort sorts a list by recursivly splitting the list until it gets down to single elem arrays. Then merging the sub lists as you recurse back up. The algorithm has a O(nlogn) runtime which is consistent with my results. My Mergesort has no adversary. But a reverse order list will mess up some in place Mergesorts.

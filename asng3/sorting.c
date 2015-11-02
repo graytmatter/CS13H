@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-int compares[6];
-int moves[6];
+int compares[7];
+int moves[7];
 
 int *makeRandomList(int length){
   int *list = malloc(length*sizeof(int));
@@ -109,12 +109,13 @@ void bubbleSort(int a[], int length){
 
 //insertionSort: sort by repeatedly inserting into the already sorted list
 // moves and compares stored at 2
+//I think
 void insertionSort(int a[], int length){
   for (int i = 1; i < length; ++i)
   {
     int j = i;
     int elem = a[i];
-    while(j > 0 && a[j] < a[j-1]){
+    while(j > 0 && elem < a[j-1]){
       a[j] = a[j-1];
       moves[2] += 1;
       compares[2] += 1;
@@ -180,26 +181,39 @@ void merge(int a[],int al,int b[],int bl){
   int r[al+bl];
   int i=0;
   int j=0;
-  while(i < al && j <bl){
+  while(i < al && j < bl){
     if(a[i] < b[j]){
+      compares[6] += 1;
       r[i+j] = a[i];
+      moves[6]+=1;
       i++;
     }else{
+      compares[6] += 1;
       r[i+j] = b[j];
+      moves[6]+=1;
       j++;
     }
+  }
+  while(i < al){
+    r[i+j] = a[i];
+    moves[6]+=1;
+    i++;
+  }
+  while(j < bl){
+    r[i+j] = b[j];
+    moves[6]+=1;
+    j++;
   }
   copylist(r,a,al+bl);
 }
 
 void mergeSort(int a[], int length){
   if(length <= 1){
-    printf("%s\n","p1");
+    compares[6] += 1;
     return;
   }
   else{
-    printf("l: %i l-1/2:%i\n",length,(length-1)/2);
-    int half = (length-1)/2;
+    int half = (length)/2;
     mergeSort(a,half);
     mergeSort(&a[half],length-half);
     merge(a,half,&a[half],length-half);
@@ -347,12 +361,6 @@ int main(int argc, char const *argv[])
       checkSortedLow(sortedList,i);
       printf("For a sorted list Heapsort did %i comparisons and %i moves\n", compares[4], moves[4]);
 
-
-   // quickSort(makeRandomLList(sortingList,i),i);
-  //     // printLList(makeRandomList(sortingList,i));
-  // // makeHeap(sortingList,i);
-
-
   // quickSort
   copylist(inputList,sortingList,i);
     quickSort(sortingList,i);
@@ -363,10 +371,14 @@ int main(int argc, char const *argv[])
       checkSortedLow(sortedList,i);
       printf("For a sorted list Quicksort did %i comparisons and %i moves\n", compares[5], moves[5]);
 
-  // // mergeSort
-  // copylist(inputList,sortingList,i);
-  //   mergeSort(sortingList,i);
-  //     checkSortedLow(sortingList,i);
+  // mergeSort
+  copylist(inputList,sortingList,i);
+    mergeSort(sortingList,i);
+      checkSortedLow(sortingList,i);
+      printf("Merge did %i comparisons and %i moves\n", compares[6], moves[6]);
+    mergeSort(sortedList,i);
+      checkSortedLow(sortedList,i);
+      printf("For a sorted list Mergesort did %i comparisons and %i moves\n", compares[6], moves[6]);
 
 
   return 0;
