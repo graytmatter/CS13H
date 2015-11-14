@@ -77,7 +77,7 @@ subtractions is a pain
 
 1011 is - 5
 
-   0101
+ 0101
 +1011
    0000 and the last 1 is gone.
 
