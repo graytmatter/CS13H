@@ -1,0 +1,1 @@
+This is my doubleplus good bloom filter program. It uses a really ungood hashing function to turn the strings into words but by having 3 bloom filters I have less then 1% false Aladeens so that's plus good. You'd have to be triple plus lucky to get more than a few ungood words past BB.
