@@ -1,0 +1,4 @@
+hi : sup : 1
+El Cajon : Lakeside : 4
+El Cajon : La Mesa : 1
+Santee : Lakeside : 1

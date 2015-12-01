@@ -1,8 +1,4 @@
-This is my doubleplus good bloom filter program. It uses a really ungood hashing function to turn the strings into words but by having 3 bloom filters I have less then 1% false Aladeens so that's plus good. You'd have to be triple plus lucky to get more than a few ungood words past BB.
-
-
-
-This is a fairly basic C program written as a project on hashing and bloom filters. I wrote this program for asignment 4 for CS13H at UC Santa Cruz during fall 2015 quarter
+TRAVELLING SALESMAN
 
 Copyright (c) 2015 Matthew Gray
 

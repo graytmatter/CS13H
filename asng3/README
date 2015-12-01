@@ -6,7 +6,7 @@ MinSort: Min Sort sorts a list by repeatedly taking the smallest elem in the res
 
 BubbleSort: Bubble Sort sorts a list by repeatedly running though the list comparing each elem with the elem following them. if those two are out of order switch them. This algorithm has an O(n^2) runtime which is consistent with my results. The adversary is a reverse sorted list.
 
-InsertionSort: Insertion Sort sorts a list by repeadly taking the first elem in the ramining unsorted list and inserting it into the correct position in the sorted portion of the list. This algorithm should have an O(n^2) runtime which is not consistent with my results, I think I'm getting like O(n) or O(nlogn) time, I'm probably missing something... The adversary is a reverse sorted list.
+InsertionSort: Insertion Sort sorts a list by repeadly taking the first elem in the ramining unsorted list and inserting it into the correct position in the sorted portion of the list. This algorithm should have an O(n^2) runtime which is consistent with my results. The adversary is a reverse sorted list.
 
 ShellSort: Shell Sort sorts a list by running insertion sort over the list at intervals usually derived by repeatedly deviding the list length by 2. This algorithm has a nlogn run time which is consistent with my results. The adversary is two sorted lists interspersed. Which will have a O(n^2) runtime.
 
