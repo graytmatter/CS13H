@@ -161,7 +161,7 @@ char* bestRoute;
 int bestDistance=10000000;
 
 char * makePassPath(char*current){
-  printf("makePassPath\n");
+  // printf("makePassPath\n");
   char *path;
   int pathsize=numOfCities*NAME_SIZE+numOfCities;
   path = (char*)calloc(pathsize,sizeof(char));
@@ -189,8 +189,8 @@ void findHamiltonian(char*start, char*end, HASH*hash, int distance, char *path, 
     tabsArr[i] = ' ';
   }
   tabsArr[tabs]=0;
-  printf("%sstart:%s end:%s distance:%i visited:%i\n",tabsArr,start,end,distance,citiesVisited);
-  printf("%spath:%s\n",tabsArr,path);
+  // printf("%sstart:%s end:%s distance:%i visited:%i\n",tabsArr,start,end,distance,citiesVisited);
+  // printf("%spath:%s\n",tabsArr,path);
   CITY*city = findCity(start,hash);
   printf("%sstart:%s distance:%i\n",tabsArr,city->name,distance);
   if(city->visited){
@@ -201,7 +201,7 @@ void findHamiltonian(char*start, char*end, HASH*hash, int distance, char *path, 
     ROUTE*route = city->route;
     while(route !=NULL){//look through all exiting edges
       if(strcmp(route->name,end)==0){//if that edge leads home
-        printf("%s****FOUND HAMILTONIAN***** distance:%i\n",tabsArr,distance);
+        // printf("%s****FOUND HAMILTONIAN***** distance:%i\n",tabsArr,distance);
         if(distance+route->weight < bestDistance){
           int j=0;
           int k = (NAME_SIZE+1)*(citiesVisited-1)+1;
@@ -226,13 +226,13 @@ void findHamiltonian(char*start, char*end, HASH*hash, int distance, char *path, 
       j++;
       k++;
     }
-    printf("%sstart:%s path:%s\n",tabsArr,start,path);
+    // printf("%sstart:%s path:%s\n",tabsArr,start,path);
     ROUTE*route = city->route;
     if(route == NULL){
       return ; //if there are no routes out of this return empty
     }else{
       city->visited = 1;
-      while(route->next != NULL){
+      while(route != NULL){
         char* passPath = makePassPath(path);
         findHamiltonian(route->name,end,hash,distance+route->weight,passPath,citiesVisited+1,tabs+1);
         route = route->next;
@@ -242,7 +242,7 @@ void findHamiltonian(char*start, char*end, HASH*hash, int distance, char *path, 
     }
 
 
-    printf("%sstarting:%s path:%s\n",tabsArr,city->name,path);
+    // printf("%sstarting:%s path:%s\n",tabsArr,city->name,path);
   }
 }
 
