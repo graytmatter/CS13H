@@ -192,7 +192,7 @@ void findHamiltonian(char*start, char*end, HASH*hash, int distance, char *path, 
   // printf("%sstart:%s end:%s distance:%i visited:%i\n",tabsArr,start,end,distance,citiesVisited);
   // printf("%spath:%s\n",tabsArr,path);
   CITY*city = findCity(start,hash);
-  printf("%sstart:%s distance:%i\n",tabsArr,city->name,distance);
+  // printf("%sstart:%s distance:%i\n",tabsArr,city->name,distance);
   if(city->visited){
     return; //if you've already been to this city return empty
   }else if(distance>=bestDistance){
@@ -253,7 +253,6 @@ FILE *fr;
 char buffer[NAME_SIZE];
 int main(int argc, char const *argv[])
 {
-  printf("PATH_SIZE%i\n",numOfCities*NAME_SIZE+numOfCities);
   HASH* newhash = (HASH*)calloc(1,sizeof(HASH));
 
   char name1[NAME_SIZE];
