@@ -1,4 +1,7 @@
 TRAVELLING SALESMAN
+This is a fairly hacky solution to the classic travelling salesman problem: Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?
+
+I have several unenssisary global variables and the way I pass parameters through the main find-hamiltonian/dfs is really not ideal and leads to O(n^2) space complexity. But it does work!
 
 Copyright (c) 2015 Matthew Gray
 
